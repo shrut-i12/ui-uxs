@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Armstrong Number Checker</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        
+        input {
+            padding: 8px;
+            width: 200px;
+        }
+        
+        button {
+            padding: 8px 15px;
+            margin-left: 5px;
+            cursor: pointer;
+        }
+        
+        #result {
+            display: none;
+            margin: 20px auto;
+            padding: 10px;
+            width: 350px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Armstrong Number Checker</h1>
+
+    <p>Enter a number:</p>
+
+    <input type="number" id="numberInput">
+
+    <button onclick="checkArmstrong()">Check</button>
+
+    <div id="result"></div>
+
+
+    <script>
+        function checkArmstrong() {
+
+            // Get the number entered by the user
+            let input = document.getElementById("numberInput").value;
+
+            // Check if the input is empty
+            if (input === "") {
+                alert("Please enter a number.");
+                return;
+            }
+
+            let number = parseInt(input);
+
+            // Armstrong numbers are considered here for non-negative integers
+            if (number < 0) {
+                alert("Please enter a positive number.");
+                return;
+            }
+
+            // Convert the number into a string
+            let numberString = number.toString();
+
+            // Find the number of digits
+            let digits = numberString.length;
+
+            let sum = 0;
+
+            // Calculate Armstrong sum
+            for (let i = 0; i < digits; i++) {
+
+                let digit = parseInt(numberString[i]);
+
+                sum = sum + Math.pow(digit, digits);
+            }
+
+            // Get the result div
+            let result = document.getElementById("result");
+
+            // Make the hidden result visible
+            result.style.display = "block";
+
+            // Check the result
+            if (sum === number) {
+                result.innerHTML =
+                    "<b>" + number + " is an Armstrong Number.</b>" +
+                    "<br>Calculated Sum = " + sum;
+            } else {
+                result.innerHTML =
+                    "<b>" + number + " is NOT an Armstrong Number.</b>" +
+                    "<br>Calculated Sum = " + sum;
+            }
+        }
+    </script>
+
+</body>
+
+</html>
